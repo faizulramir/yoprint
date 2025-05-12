@@ -24,10 +24,10 @@ class UploadService
         $file->storeAs('uploads', $filename, 'public');
 
         $upload = Upload::create([
-            'filename' => $filename, // store only the filename (not full path)
+            'filename' => $filename,
             'status' => 'pending',
         ]);
 
-        ProcessCsvUpload::dispatch($upload->id); // pass only the ID to the job
+        ProcessCsvUpload::dispatch($upload);
     }
 }
